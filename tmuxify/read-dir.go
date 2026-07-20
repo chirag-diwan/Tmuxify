@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"slices"
+	"strings"
 )
 
 var default_ignores = []string{
@@ -14,31 +15,37 @@ var default_ignores = []string{
 	".cache",
 	".bun",
 	".cargo",
-	".wrangler",
 }
 
-func ReadDir(roots []string , ignore []string) (chan string) {
+func ReadDir(roots []string , ignore []string , maxDepth int) (chan string) {
 	if len(ignore) == 0 {
 		ignore = default_ignores
 	}
 
+	home , _ := os.UserHomeDir();
 	if len(roots) == 0 {
-		home , _ := os.UserHomeDir();
-		roots = append(roots, home)
+		roots = append(roots, "")
 	}
 
 	path_chan := make(chan string)
 
 	go func(){
 		for _ , root := range roots{
-			abs, err := filepath.Abs(root)
+			abs, err := filepath.Abs(filepath.Join(home , root))
+
 			if err != nil {
 				fmt.Print(err)
 			}
+			rootDepth := strings.Count(abs, string(filepath.Separator))
 
 			err = filepath.WalkDir(abs, func(path string, d fs.DirEntry, err error) error {
 				if err != nil {
 					return err
+				}
+
+				currentDepth := strings.Count(path, string(filepath.Separator)) - rootDepth
+				if d.IsDir() && currentDepth >= maxDepth {
+					return filepath.SkipDir
 				}
 
 				base := filepath.Base(path)
@@ -49,7 +56,10 @@ func ReadDir(roots []string , ignore []string) (chan string) {
 					}
 					return nil
 				}
-				
+
+
+
+
 				path_chan <- path 
 				return nil
 			})

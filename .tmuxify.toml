@@ -1,11 +1,11 @@
 [session]
 name = "tmuxify"
-main = 1 
+main = 0
 
 [[window]]
-name = "This is a window" 
-cmds = ["nvim" , "" , ""]
+name = "nvim" 
+cmds = ["nvim ."]
 
 [[window]]
-name = "This is a window" 
-cmds = ["nvim" , "" , ""]
+name = "cmd" 
+cmds = ["ls"]
