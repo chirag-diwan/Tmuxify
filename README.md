@@ -1,5 +1,7 @@
 # Tmuxify
 
+![Demo]("./assets/demo.gif")
+
 ## Motivation
 
 I always wanted a utility that could intelligently set up my tmux sessions. Different projects often require different layouts—opening specific windows, launching editors, running commands, and arranging everything exactly how I like it.
