@@ -1,6 +1,6 @@
 # Tmuxify
 
-![Demo]("./assets/demo.gif")
+![Demo](./assets/demo.gif)
 
 ## Motivation
 
