@@ -57,9 +57,6 @@ func ReadDir(roots []string , ignore []string , maxDepth int) (chan string) {
 					return nil
 				}
 
-
-
-
 				path_chan <- path 
 				return nil
 			})

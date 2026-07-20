@@ -36,7 +36,7 @@ func GetDefaultConfig(root_dir string)Config{
 }
 
 func GetConfig(root_dir string) Config{
-	data ,err := os.ReadFile("./.tmuxify.toml");
+	data ,err := os.ReadFile(filepath.Join(root_dir , ".tmuxify.toml"));
 	if err != nil {
 		fmt.Print(err);
 		return GetDefaultConfig(root_dir)

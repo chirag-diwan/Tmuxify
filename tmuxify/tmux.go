@@ -26,6 +26,7 @@ func SetupTmux(projectContext context.Context , config Config , start_directory 
 	for i := range len(config.Window) - 1{
 		_ , err := ses.NewWindow(projectContext , &tmux.NewWindowOptions{
 			WindowName: config.Window[i].Name,
+			StartDirectory: start_directory,
 		})
 
 		if err != nil {
