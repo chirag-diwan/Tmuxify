@@ -25,7 +25,7 @@ func SetupTmux(projectContext context.Context , config Config , start_directory 
 
 	for i := range len(config.Window) - 1{
 		_ , err := ses.NewWindow(projectContext , &tmux.NewWindowOptions{
-			WindowName: config.Window[i].Name,
+			WindowName: config.Window[i + 1].Name,
 			StartDirectory: start_directory,
 		})
 
@@ -43,6 +43,9 @@ func SetupTmux(projectContext context.Context , config Config , start_directory 
 	}
 
 	for i , win := range windows{
+		if i == 0 {
+			win.Rename(projectContext , config.Window[0].Name)
+		}
 		if i == config.Session.Main {
 			win.Select(projectContext)
 		}
