@@ -24,16 +24,18 @@ func SetupTmux(projectContext context.Context , config Config , start_directory 
 
 		if err != nil {
 			fmt.Printf("tmux.GetSessionByName() failed with %s\n" , err.Error())
+			return
 		}
 
-		err = tmuxHandler.SwitchClient(projectContext , &tmux.SwitchClientOptions{
-			TargetSession: config.Session.Name,
-		})
+		if err = ses.Attach(projectContext) ; err != nil {
+			err = tmuxHandler.SwitchClient(projectContext , &tmux.SwitchClientOptions{
+				TargetSession: config.Session.Name,
+			})
 
-		if err != nil {
-			fmt.Printf("tmuxHandler.SwitchClient() failed with %s\n" , err.Error())
+			if err != nil {
+				fmt.Printf("tmuxHandler.SwitchClient() failed with %s\n" , err.Error())
+			}
 		}
-		
 		return
 	}
 
