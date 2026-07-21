@@ -67,11 +67,10 @@ Make sure `~/.local/bin` is included in your `PATH`.
 
 ## Reporting Issues
 
-If you encounter a bug or have a feature request, please open an issue and include the following information:
+If you encounter a bug , please open an issue and include the following information:
 
 * What you expected to happen.
 * What actually happened.
 * Steps to reproduce the issue.
 * Your operating system.
 * Your Go version (if relevant).
-

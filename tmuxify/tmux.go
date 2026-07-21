@@ -3,10 +3,12 @@ package tmuxify
 import (
 	"context"
 	"fmt"
+
 	"github.com/owenthereal/tmux"
 )
 
 func SetupTmux(projectContext context.Context , config Config , start_directory string) {
+
 	tmuxHandler , err := tmux.Default()
 	if err != nil {
 		fmt.Printf("tmux.Default() failed with %s\n" , err.Error())

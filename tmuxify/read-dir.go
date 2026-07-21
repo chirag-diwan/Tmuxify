@@ -17,7 +17,7 @@ var default_ignores = []string{
 	".cargo",
 }
 
-func ReadDir(roots []string , ignore []string , maxDepth int) (chan string) {
+func ReadDir(path_chan * chan string , roots []string , ignore []string , maxDepth int){
 	if len(ignore) == 0 {
 		ignore = default_ignores
 	}
@@ -26,8 +26,6 @@ func ReadDir(roots []string , ignore []string , maxDepth int) (chan string) {
 	if len(roots) == 0 {
 		roots = append(roots, "")
 	}
-
-	path_chan := make(chan string)
 
 	go func(){
 		for _ , root := range roots{
@@ -57,12 +55,9 @@ func ReadDir(roots []string , ignore []string , maxDepth int) (chan string) {
 					return nil
 				}
 
-				path_chan <- path 
+				*path_chan <- path 
 				return nil
 			})
 		}
-		close(path_chan)
 	}()
-
-	return path_chan 
 }

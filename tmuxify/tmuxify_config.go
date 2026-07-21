@@ -1,7 +1,6 @@
 package tmuxify
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -38,7 +37,6 @@ func GetDefaultConfig(root_dir string)Config{
 func GetConfig(root_dir string) Config{
 	data ,err := os.ReadFile(filepath.Join(root_dir , ".tmuxify.toml"));
 	if err != nil {
-		fmt.Print(err);
 		return GetDefaultConfig(root_dir)
 	}
 
@@ -46,7 +44,6 @@ func GetConfig(root_dir string) Config{
 	err = toml.Unmarshal(data , &config);
 
 	if err != nil {
-		fmt.Print(err)
 		return GetDefaultConfig(root_dir)
 	}
 
