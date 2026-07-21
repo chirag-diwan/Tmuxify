@@ -6,7 +6,7 @@
 
 I always wanted a utility that could intelligently set up my tmux sessions. Different projects often require different layouts—opening specific windows, launching editors, running commands, and arranging everything exactly how I like it.
 
-Tmuxify solves this by using a project-specific `.tmuxify.toml` file that describes how a tmux session should be created. Simply run Tmuxify inside a project, and it will automatically set up the session for you.
+Tmuxify solves this by using a project-specific `.tmuxify.toml` file that describes how a tmux session should be created. Simply run tmuxify , select the directory and tmuxify will then do the rest for you.
 
 ## `.tmuxify.toml`
 
